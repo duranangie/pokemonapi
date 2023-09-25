@@ -1,6 +1,24 @@
+//const apiUrl = "https://650a3b71f6553137159c8368.mockapi.io";
+//let editpokemon = null;
+//
+//async function guardardatos (){
+//    try{
+//        const response = await fetch(`${apiUrl}/pokemon`, {
+//            method: "POST",
+//            headers: {
+//                "Content-Type": "application/json"
+//            },
+//            body: JSON.stringify(editpokemon)
+//    }catch(error){
+//        console.error(error);
+//    }
+//}
+//
+
+
 async function getpokemon() {
     try {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=501");
         const data = await response.json();
         return data.results.map(pokemon => pokemon.name);
 
@@ -21,7 +39,7 @@ async function traerpokemon() {
             const pokemonData = await response.json();
             const article = document.createElement("article");
             article.innerHTML = `
-            <img class="show-image-button" src="${pokemonData.sprites.front_default}" alt="${pokemonData.sprites.back_default}" alt= "${name}">
+            <button><img class="show-image-button" src="${pokemonData.sprites.front_default}" alt="${pokemonData.sprites.back_default}" alt= "${name}"></button> 
             <h2>${name}</h2>
             `;
             mainContainer.appendChild(article);
@@ -37,22 +55,36 @@ async function traerpokemon() {
                     imageUrl: imageUrl,
                     imageAlt: "Imagen del Pokémon",
                     html: `${pokemonData.stats.map((data) => `
-                    <input
-                      type="range"
-                      value="${data.base_stat}">
-                    <label>
-                      ${data.stat.name}</label><br>
-                    `
-                      )
-                      .join("")}`,
+                    <div>
+                    <input 
+                      type="range" 
+                      value="${data.base_stat}"
+                      >
+                    <label
+                      data-name=${data.stat.name}></label><br>
+                      <label>${data.stat.name}</label$><br>
+                      </div>
+                `)
+                        .join("")}`,
                     showCloseButton: true, // Muestra un botón para cerrar el modal
-                });
-            });
+
+                })
+                let containerHtml = document.querySelector("#swal2-html-container");
+                containerHtml.addEventListener("input", (e) => {
+                    let mylabel = e.target.parentNode.children[1];
+                    console.log(mylabel.dataset.name);
+                    mylabel.innerHTML = e.target.value;
+                })
+
+            })
+
         } catch (error) {
             console.error(`Error al obtener información de ${name}:`, error);
         }
+
+
     }
 }
 
 
-traerpokemon();
+traerpokemon(); 
