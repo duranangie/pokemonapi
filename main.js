@@ -1,19 +1,35 @@
-//const apiUrl = "https://650a3b71f6553137159c8368.mockapi.io";
-//let editpokemon = null;
-//
-//async function guardardatos (){
-//    try{
-//        const response = await fetch(`${apiUrl}/pokemon`, {
-//            method: "POST",
-//            headers: {
-//                "Content-Type": "application/json"
-//            },
-//            body: JSON.stringify(editpokemon)
-//    }catch(error){
-//        console.error(error);
-//    }
-//}
-//
+let apiURL= "https://650a3b71f6553137159c8368.mockapi.io/"
+let update = null;
+
+async function guardar(){
+    try{
+        const response = await fetch(`${apiURL}/pokemon`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"aplication.json",},
+            body: JSON.stringify(pokemonData),
+        });
+        const data = await response.json();
+        return data;
+
+
+    }catch (error){
+        console.error("error",error)
+
+
+    }
+}
+
+
+async function obtenerpokemon(pokemonId,updateData){
+    try{
+
+    }catch{
+
+    }
+
+}
+
 
 
 async function getpokemon() {
@@ -29,6 +45,19 @@ async function getpokemon() {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+//consumo de api 
 
 async function traerpokemon() {
     const pokemonNames = await getpokemon();
@@ -57,13 +86,13 @@ async function traerpokemon() {
                     html: `${pokemonData.stats.map((data) => `
                     <div>
                     <input 
-                      type="range" 
-                      value="${data.base_stat}"
-                      >
+                    type="range" 
+                    value="${data.base_stat}"
+                    >
                     <label
-                      data-name=${data.stat.name}></label><br>
-                      <label>${data.stat.name}</label$><br>
-                      </div>
+                    data-name=${data.stat.name}></label><br>
+                    <label>${data.stat.name}</label$><br>
+                    </div>
                 `)
                         .join("")}`,
                     showCloseButton: true, // Muestra un botón para cerrar el modal
@@ -88,3 +117,4 @@ async function traerpokemon() {
 
 
 traerpokemon(); 
+
