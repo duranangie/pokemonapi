@@ -1,7 +1,5 @@
 let apiURL= "https://650a3b71f6553137159c8368.mockapi.io/"
-let update = null;
-
-async function guardar(){
+async function crear(name){
     try{
         const response = await fetch(`${apiURL}/pokemon`,{
             method:"POST",
@@ -9,26 +7,27 @@ async function guardar(){
                 "Content-Type":"aplication.json",},
             body: JSON.stringify(pokemonData),
         });
-        const data = await response.json();
-        return data;
+
+        if(response.ok){
+            const pokemonData = await response.json();
+            console.log("pokemon creado",pokemonData);
+            return pokemonData;
+
+        }else{
+            console.error("Error en crear pokemon")
+            return null;
+        }
+
 
 
     }catch (error){
-        console.error("error",error)
-
-
-    }
+        console.error("error",error);
+        return null;
+     }
 }
 
-
-async function obtenerpokemon(pokemonId,updateData){
-    try{
-
-    }catch{
-
-    }
-
-}
+const nuevoPokemon = await crear('pikachu');
+console.log({nuevoPokemon});
 
 
 
@@ -44,17 +43,6 @@ async function getpokemon() {
         return [];
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 //consumo de api 
