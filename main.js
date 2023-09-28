@@ -20,6 +20,7 @@ async function getpokemon() {
 
 async function traerpokemon() {
     const pokemonNames = await getpokemon();
+
     const mainContainer = document.querySelector("main");
     for (const name of pokemonNames) {
         try {
@@ -27,7 +28,7 @@ async function traerpokemon() {
             const pokemonData = await response.json();
             const article = document.createElement("article");
             article.innerHTML = `
-            <button data-id="${pokemonData.id}"><img class="show-image-button" src="${pokemonData.sprites.front_default}" alt="${pokemonData.sprites.back_default}" alt="${name}"></button>
+            <button data-id="${pokemonData.id}"><img class="show-image-button" data-name="${pokemonData.name}" src="${pokemonData.sprites.front_default}" alt="${pokemonData.sprites.back_default}" alt="${name}"></button>
             <h2>${name}</h2>
         `;
 
@@ -37,7 +38,12 @@ async function traerpokemon() {
             const showImageButton = article.querySelector(".show-image-button");
             // ...
 
-            showImageButton.addEventListener("click", () => {
+            showImageButton.addEventListener("click", async() => {
+                console.log(showImageButton.dataset.name)
+                await obtenerDatosPokemonMok(showImageButton.dataset.name);
+                // const res = await (await fetch(`https://pokeapi.co/api/v2/pokemon/${showImageButton.dataset.name}`)).json();
+                // console.log(res);
+
                 const imageUrl = pokemonData.sprites.front_default;
 
                 // Muestra la imagen en un modal utilizando SweetAlert
@@ -87,6 +93,15 @@ async function traerpokemon() {
                     }
                 });
             });
+
+            const statsPokemon = async (name)=>{
+                const existingPokemonResponse = await fetch(`${apiURL}?name=${name}`);
+                if (existingPokemonData.length > 0) {
+                    return existingPokemonData[0];
+                } else{ 
+                    return []
+                }
+            }
 
             // Función para crear o actualizar un Pokémon en la API mock con stats
             async function createOrUpdatePokemon(name, imageUrl, stats) {
@@ -161,6 +176,16 @@ async function traerpokemon() {
 
 
     }
+}
+
+
+const obtenerDatosPokemonMok = async function(name){
+    let res = await (await fetch(apiURL)).json();
+    let pokemon = res.filter((pok)=>{
+        return pok.name == name;
+    });
+    console.log(res);
+    console.log(pokemon);
 }
 
 
