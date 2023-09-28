@@ -251,15 +251,4 @@ const obtenerDatosPokemonMok = async function (name) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
 traerpokemon(); 
