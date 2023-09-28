@@ -38,67 +38,126 @@ async function traerpokemon() {
             const showImageButton = article.querySelector(".show-image-button");
             // ...
 
-            showImageButton.addEventListener("click", async() => {
+            showImageButton.addEventListener("click", async () => {
                 console.log(showImageButton.dataset.name)
-                await obtenerDatosPokemonMok(showImageButton.dataset.name);
-                // const res = await (await fetch(`https://pokeapi.co/api/v2/pokemon/${showImageButton.dataset.name}`)).json();
-                // console.log(res);
+                let pokemon = await obtenerDatosPokemonMok(showImageButton.dataset.name);
 
-                const imageUrl = pokemonData.sprites.front_default;
 
-                // Muestra la imagen en un modal utilizando SweetAlert
-                Swal.fire({
-                    title: `${pokemonData.name}`,
-                    imageUrl: imageUrl,
-                    imageAlt: "Imagen del Pokémon",
-                    html: `${pokemonData.stats.map((data) => `
+
+                if (pokemon.length > 0) {
+                    pokemon = pokemon[0];
+                    Swal.fire({
+                        title: `${pokemon.name}`,
+                        imageUrl: pokemon.imageUrl,
+                        imageAlt: "Imagen del Pokémon",
+                        html: `
             <div>
-                <input 
-                    type="range" 
-                    value="${data.base_stat}"
-                    data-pokemon-stat="${data.stat.name}" <!-- Agregar un atributo data para identificar el stat -->
-                >
-                <label>${data.stat.name}</label><br>
-                <span class="stat-value"></span> <!-- Agregar un elemento para mostrar el valor actual -->
+                <input type="range" value="${pokemon.stats[0].value}" data-pokemon-stat="hp">
+                <label>hp</label><br>
+                <span class="stat-value"></span> 
             </div>
-        `)
-                        .join("")}`,
-                    showCloseButton: true,
-                    showConfirmButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: 'Guardar',
-                    cancelButtonText: 'Eliminar',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Guardar los datos en la API mock
-                        const name = pokemonData.name;
-                        const stats = Array.from(document.querySelectorAll('input[type="range"]')).map(input => ({
-                            statName: input.getAttribute('data-pokemon-stat'),
-                            value: input.value
-                        }));
-                        createOrUpdatePokemon(name, imageUrl, stats);
-                    } else if (result.isDismissed) {
-                        // Eliminar el Pokémon de la API mock
-                        const id = pokemonData.id; // Asume que tienes un ID en los datos del Pokémon
-                        deletePokemon(id);
-                    }
-                });
+            <div>
+                <input type="range" value="${pokemon.stats[1].value}" data-pokemon-stat="attack">
+                <label>attack</label><br>
+                <span class="stat-value"></span> 
+            </div>
+            <div>
+                <input type="range"  value="${pokemon.stats[2].value}" data-pokemon-stat="defense">
+                <label>defense</label><br>
+                <span class="stat-value"></span> 
+            </div>
+            <div>
+                <input type="range"  value="${pokemon.stats[3].value}" data-pokemon-stat="special-attack">
+                <label>special-attack</label><br>
+                <span class="stat-value"></span> 
+            </div>
+            <div>
+                <input type="range"  value="${pokemon.stats[4].value}" data-pokemon-stat="special-defense">
+                <label>special-defense</label><br>
+                <span class="stat-value"></span> 
+            </div>
+            <div>
+                <input type="range"  value="${pokemon.stats[5].value}" data-pokemon-stat="speed">
+                <label>speed</label><br>
+                <span class="stat-value"></span> 
+            </div>
+                `,
+                        showCloseButton: true,
+                        showConfirmButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: 'Guardar',
 
-                const containerHtml = document.querySelector("#swal2-html-container");
-                containerHtml.addEventListener("input", (e) => {
-                    if (e.target.type === "range") {
-                        const label = e.target.nextElementSibling;
-                        const statValue = e.target.value;
-                        label.innerHTML = statValue;
-                    }
-                });
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Guardar los datos en la API mock
+                            const name = pokemonData.name;
+                            const stats = Array.from(document.querySelectorAll('input[type="range"]')).map(input => ({
+                                statName: input.getAttribute('data-pokemon-stat'),
+                                value: input.value
+                            }));
+                            createOrUpdatePokemon(name, pokemon.imageUrl, stats);
+                        } else if (result.isDismissed) {
+                            // Eliminar el Pokémon de la API mock
+                            const id = pokemonData.id; // Asume que tienes un ID en los datos del Pokémon
+                        }
+                    });
+                } else {
+
+                    Swal.fire({
+                        title: `${pokemonData.name}`,
+                        imageUrl: pokemonData.sprites.front_default,
+                        imageAlt: "Imagen del Pokémon",
+                        html: `${pokemonData.stats.map((data) => `
+                    <div>
+                        <input 
+                            type="range" 
+                            value="${data.base_stat}"
+                            data-pokemon-stat="${data.stat.name}" <!-- Agregar un atributo data para identificar el stat -->
+                        >
+                        <label>${data.stat.name}</label><br>
+                        <span class="stat-value"></span> <!-- Agregar un elemento para mostrar el valor actual -->
+                    </div>
+                `).join("")}`,
+                        showCloseButton: true,
+                        showConfirmButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: 'Guardar',
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Guardar los datos en la API mock
+                            const name = pokemonData.name;
+                            const stats = Array.from(document.querySelectorAll('input[type="range"]')).map(input => ({
+                                statName: input.getAttribute('data-pokemon-stat'),
+                                value: input.value
+                            }));
+                            createOrUpdatePokemon(name, pokemonData.sprites.front_default, stats);
+                        } else if (result.isDismissed) {
+                            // Eliminar el Pokémon de la API mock
+                            const id = pokemonData.id; // Asume que tienes un ID en los datos del Pokémon
+                        }
+                    });
+
+                    const containerHtml = document.querySelector("#swal2-html-container");
+                    containerHtml.addEventListener("input", (e) => {
+                        if (e.target.type === "range") {
+                            const label = e.target.nextElementSibling;
+                            const statValue = e.target.value;
+                            label.innerHTML = statValue;
+                        }
+                    });
+
+                }
+
+
+
             });
 
-            const statsPokemon = async (name)=>{
+            const statsPokemon = async (name) => {
                 const existingPokemonResponse = await fetch(`${apiURL}?name=${name}`);
                 if (existingPokemonData.length > 0) {
                     return existingPokemonData[0];
-                } else{ 
+                } else {
                     return []
                 }
             }
@@ -176,17 +235,31 @@ async function traerpokemon() {
 
 
     }
+
 }
 
 
-const obtenerDatosPokemonMok = async function(name){
+
+const obtenerDatosPokemonMok = async function (name) {
     let res = await (await fetch(apiURL)).json();
-    let pokemon = res.filter((pok)=>{
+    let pokemon = res.filter((pok) => {
         return pok.name == name;
     });
-    console.log(res);
-    console.log(pokemon);
+    return pokemon
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 traerpokemon(); 
