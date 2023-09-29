@@ -1,37 +1,59 @@
-## Sitio web de Pokémon
+# Pokémon API Web App
 
-Este es un archivo README.md para una página web simple dedicada a Pokémon. El código HTML proporcionado representa la estructura de la página web, y este README proporcionará una descripción general de los componentes y la funcionalidad de la página.
+Esta es una aplicación web simple que utiliza la API de Pokémon para mostrar información de Pokémon y permite agregar o actualizar Pokémon en una API mock. Puedes ver información detallada de un Pokémon, ajustar sus estadísticas y guardar los cambios en la API mock.
 
-## Tabla de contenidos
+![image](https://github.com/duranangie/cambiador/assets/117625258/c1f80323-52d2-48e9-a404-0efbb58686e4)
 
-- [Descripción](#descripción)
-- [Requisitos previos](#requisitos-previos)
-- [Instalación](#instalación)
-- [Uso](#uso)
 
-## Descripción
+## Características
 
-El sitio web de Pokémon es una página web básica que muestra una animación GIF de Pokémon y tiene algunos espacios vacíos para futuros contenidos. Utiliza HTML, CSS y JavaScript para crear una experiencia web sencilla e interactiva.
+- **Lista de Pokémon**: Muestra una lista de nombres de Pokémon obtenidos de la API de Pokémon.
 
-(![image](https://github.com/duranangie/pokemonapi/assets/117625258/7f31423c-9652-4716-8ab1-5b0a25a896d0)
-)
+- **Detalles de Pokémon**: Al hacer clic en un Pokémon, se muestra información detallada, incluyendo estadísticas y una imagen.
 
-El sitio web consta de los siguientes componentes:
+- **Ajuste de estadísticas**: Puedes ajustar las estadísticas de un Pokémon utilizando controles deslizantes.
 
-- **HTML**: La estructura principal de la página web se define en el código HTML. Incluye metadatos, el título de la página y enlaces a recursos externos como archivos CSS y JavaScript.
+- **Guardar cambios**: Puedes guardar los cambios en la API mock presionando el botón "Guardar".
 
-- **CSS**: El archivo CSS (style.css) contiene estilos y formato para la página web, lo que permite personalizar la apariencia de los elementos.
 
-- **JavaScript**: El archivo JavaScript (main.js) se incluye con el atributo "defer", lo que significa que se ejecutará después de que se haya cargado el contenido HTML. Este archivo JavaScript probablemente contiene interactividad y funcionalidad para la página web, aunque no se proporciona el código específico.
+## Tecnologías Utilizadas
 
-- **Bibliotecas externas**: La página web utiliza dos bibliotecas externas. La biblioteca SweetAlert2 se utiliza para crear alertas o notificaciones personalizadas, y se aplica el tema Material-UI a SweetAlert2 para mejorar la apariencia de las alertas.
+- HTML
+- CSS
+- JavaScript (con el uso de módulos ES6)
+- Fetch API para hacer solicitudes HTTP
+- SweetAlert2 para mostrar ventanas modales amigables al usuario
 
-## Requisitos previos
+## Configuración
 
-Antes de utilizar o modificar esta página web, asegúrate de cumplir con los siguientes requisitos previos:
+Asegúrate de que tengas una API mock disponible en la URL [https://650a3b71f6553137159c8368.mockapi.io/pokemon](https://650a3b71f6553137159c8368.mockapi.io/pokemon). Esta API se utiliza para almacenar y recuperar datos de Pokémon con estadísticas ajustadas.
 
-- Un editor de texto o un entorno de desarrollo integrado (IDE) para editar archivos HTML, CSS y JavaScript.
-- Un navegador web para ver y probar la página web.
+## Cómo Usar
+
+1. Abre `index.html` en tu navegador web.
+
+2. Verás una lista de nombres de Pokémon.
+
+3. Haz clic en el nombre de un Pokémon para ver más detalles.
+
+4. En la ventana emergente de detalles, puedes ajustar las estadísticas utilizando los controles deslizantes.
+
+5. Presiona el botón "Guardar" para guardar los cambios en la API mock.
+
+6. Si no deseas realizar cambios presiona el botón "Cancelar" para seleccionar otro pokémon.
+
+## Desarrollo
+
+- La aplicación utiliza la API de Pokémon para obtener la lista de nombres de Pokémon y detalles de cada Pokémon.
+
+- Los detalles de Pokémon se muestran en una ventana emergente amigable al usuario con controles deslizantes para ajustar estadísticas.
+
+- Puedes guardar los cambios o eliminar el Pokémon según tu preferencia.
+
+- Los cambios se envían a la API mock utilizando solicitudes HTTP (POST o PUT) para crear o actualizar Pokémon.
+
+- Se proporciona manejo de errores para gestionar posibles problemas de red o de la API.
+
 
 ## Instalación
 
@@ -43,6 +65,15 @@ Para configurar y ver esta página web localmente, sigue estos pasos:
 
 3. Abre el archivo `index.html` en tu navegador web para ver la página web localmente. Puedes realizar modificaciones en los archivos HTML, CSS y JavaScript según tus necesidades.
 
-## Uso
+## Créditos
 
-El uso específico de esta página web no se proporciona en el código y dependerá de cómo la personalices y desarrolles. Puedes agregar contenido relacionado con Pokémon, como información sobre los juegos, personajes o cualquier otro tema relacionado con Pokémon que desees compartir.
+- **API de Pokémon**: Fuente de datos principal para la información de Pokémon.
+
+- **SweetAlert2**: Librería utilizada para ventanas modales interactivas.
+
+## Aplicacion 
+
+![image](https://github.com/duranangie/cambiador/assets/117625258/b3a7b5d5-bec5-48d7-93c0-bdb445072b6e)
+
+![image](https://github.com/duranangie/cambiador/assets/117625258/35a19fb7-2905-4cbd-8888-17bf2ecb8be6)
+
