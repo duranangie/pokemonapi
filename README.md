@@ -1,9 +1,8 @@
 # Pokémon API Web App
 
-Esta es una aplicación web simple que utiliza la API de Pokémon para mostrar información de Pokémon y permite agregar o actualizar Pokémon en una API mock. Puedes ver información detallada de un Pokémon, ajustar sus estadísticas y guardar los cambios en la API mock.
+Este proyecto consiste en crear un pokedex con funciones de JavaScript que interactúan con una API remota para realizar operaciones de crear actualizar. Estas funciones se utilizan para conectarse a la API y realizar operaciones en la base de datos data.json.
 
 ![image](https://github.com/duranangie/cambiador/assets/117625258/c1f80323-52d2-48e9-a404-0efbb58686e4)
-
 
 ## Características
 
@@ -15,7 +14,6 @@ Esta es una aplicación web simple que utiliza la API de Pokémon para mostrar i
 
 - **Guardar cambios**: Puedes guardar los cambios en la API mock presionando el botón "Guardar".
 
-
 ## Tecnologías Utilizadas
 
 - HTML
@@ -23,10 +21,38 @@ Esta es una aplicación web simple que utiliza la API de Pokémon para mostrar i
 - JavaScript (con el uso de módulos ES6)
 - Fetch API para hacer solicitudes HTTP
 - SweetAlert2 para mostrar ventanas modales amigables al usuario
+- Json
 
+## Instalación
+
+Para configurar y ver esta página web localmente, sigue estos pasos:
+
+1. Clona este repositorio o crea una nueva carpeta para tu proyecto.
+
+2. Si creas una nueva carpeta y no clonas el repositorio copia el código HTML, CSS y JavaScript proporcionado en archivos separados con los nombres `index.html`, `style.css` y `main.js`, respectivamente. Luego ejecuta el comando `npm init -y` para crear el archivo `package.json` y agrega la linea de codigo `"dev": "json-server --watch data.json "` al `scripts` luego continua con la [configuración](#configuración)
+
+3. Abre el archivo `index.html` en tu navegador web para ver la página web localmente.
 ## Configuración
 
-Asegúrate de que tengas una API mock disponible en la URL [https://650a3b71f6553137159c8368.mockapi.io/pokemon](https://650a3b71f6553137159c8368.mockapi.io/pokemon). Esta API se utiliza para almacenar y recuperar datos de Pokémon con estadísticas ajustadas.
+
+1. Clone este repositorio en su máquina local:
+
+        `git clone https://github.com/duranangie/pokemonapi.git`
+
+
+2. Navegue hasta la carpeta del repositorio:
+
+       ` cd pokemonapi`
+
+3. Abra el archivo `index.html` en su navegador web.
+El proyecto contiene un archivo `package.json` en el que estan las dependencias necesarias para ejecutar el servidor JSON utilizado para almacenar los datos de los pokemos en la base de datos o API remota. Asegúrese de tener Node.js instalado y luego ejecute en el terminal el siguiente comando para instalar las dependencias:
+
+       ` npm -E -D install json-server`
+
+4. Luego, puede iniciar el servidor JSON simulado ejecutando:
+
+        `npm run dev`
+
 
 ## Cómo Usar
 
@@ -40,7 +66,7 @@ Asegúrate de que tengas una API mock disponible en la URL [https://650a3b71f655
 
 5. Presiona el botón "Guardar" para guardar los cambios en la API mock.
 
-6. Si no deseas realizar cambios presiona el botón "Cancelar" para seleccionar otro pokémon.
+6. Si no deseas realizar cambios, presiona el botón "Cancelar" para seleccionar otro Pokémon.
 
 ## Desarrollo
 
@@ -48,32 +74,10 @@ Asegúrate de que tengas una API mock disponible en la URL [https://650a3b71f655
 
 - Los detalles de Pokémon se muestran en una ventana emergente amigable al usuario con controles deslizantes para ajustar estadísticas.
 
-- Puedes guardar los cambios o eliminar el Pokémon según tu preferencia.
-
-- Los cambios se envían a la API mock utilizando solicitudes HTTP (POST o PUT) para crear o actualizar Pokémon.
-
-- Se proporciona manejo de errores para gestionar posibles problemas de red o de la API.
-
-
-## Instalación
-
-Para configurar y ver esta página web localmente, sigue estos pasos:
-
-1. Clona este repositorio o crea una nueva carpeta para tu proyecto.
-
-2. Copia el código HTML, CSS y JavaScript proporcionado en archivos separados con los nombres `index.html`, `style.css` y `main.js`, respectivamente.
-
-3. Abre el archivo `index.html` en tu navegador web para ver la página web localmente. Puedes realizar modificaciones en los archivos HTML, CSS y JavaScript según tus necesidades.
-
-## Créditos
-
-- **API de Pokémon**: Fuente de datos principal para la información de Pokémon.
-
-- **SweetAlert2**: Librería utilizada para ventanas modales interactivas.
+- Los cambios se envían a la API remota proporcioada por el servidos json utilizando solicitudes HTTP (POST o PUT) para crear o actualizar Pokémon.
 
 ## Aplicacion 
 
 ![image](https://github.com/duranangie/cambiador/assets/117625258/b3a7b5d5-bec5-48d7-93c0-bdb445072b6e)
 
 ![image](https://github.com/duranangie/cambiador/assets/117625258/35a19fb7-2905-4cbd-8888-17bf2ecb8be6)
-
