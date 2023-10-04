@@ -1,0 +1,23 @@
+{
+  "name": "pokemonapi",
+  "version": "1.0.0",
+  "description": "Esta es una aplicación web simple que utiliza la API de Pokémon para mostrar información de Pokémon y permite agregar o actualizar Pokémon en una API mock. Puedes ver información detallada de un Pokémon, ajustar sus estadísticas y guardar los cambios en la API mock.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "json-server --watch data.json "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duranangie/pokemonapi.git"
+  },
+  "keywords": [],
+  "author": "ani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duranangie/pokemonapi/issues"
+  },
+  "homepage": "https://github.com/duranangie/pokemonapi#readme",
+  "devDependencies": {
+    "json-server": "0.17.4"
+  }
+}
