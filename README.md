@@ -68,7 +68,7 @@ El proyecto contiene un archivo `package.json` en el que estan las dependencias 
 
 6. Si no deseas realizar cambios, presiona el botón "Cancelar" para seleccionar otro Pokémon.
 
-## Desarrollo
+## Desarrollo.
 
 - La aplicación utiliza la API de Pokémon para obtener la lista de nombres de Pokémon y detalles de cada Pokémon.
 
